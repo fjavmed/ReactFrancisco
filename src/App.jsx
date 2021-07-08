@@ -6,7 +6,9 @@
   import Contacto from './components/pages/Contacto'
   import Redes from './components/pages/Redes'
   import { HomeContainer } from './containers/HomeContainer';
+  import { ItemCount } from './components/itemCount';
   import "../node_modules/bootstrap/dist/css/bootstrap.css"
+  
 
  
   function App() {
@@ -14,8 +16,9 @@
     return (
       <div className="App">  
      
+   
+    Agrega Al carro <ItemCount />
     <HomeContainer />
-     
         <Router>
           <Navbar/>
           <Switch>
