@@ -5,7 +5,6 @@
   import Inicio from './components/pages/Inicio'
   import Contacto from './components/pages/Contacto'
   import Redes from './components/pages/Redes'
-  import { NavbarComponent } from './components/NavBarComponent';
   import { HomeContainer } from './containers/HomeContainer';
   import "../node_modules/bootstrap/dist/css/bootstrap.css"
 
@@ -16,7 +15,7 @@
       <div className="App">  
      
     <HomeContainer />
-    <NavbarComponent />    
+     
         <Router>
           <Navbar/>
           <Switch>
