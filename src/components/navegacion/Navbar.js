@@ -7,9 +7,9 @@ const NavBar = () => {
         <div>
 
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div class="container-fluid">
+                <div class="container-fixed">
                     <Link to='/'>
-                        <h3>Lente Nativo App</h3><img alt='logo' src='./logomini.png' width='110'/>
+                        <h3>Lente Nativo App</h3>
                     </Link>
                   
                     <div className="collapse navbar-collapse" id="navbarNav">
