@@ -8,6 +8,7 @@ import logo from '../../assets/logomini.png';
 import Button from '@material-ui/core/Button';
 import { Badge } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,9 +38,16 @@ export default function NavbarComponent() {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <img src={logo} width="30" alt="Logo" />
+
+          <Link to="/">
+          <IconButton>
+            <img src={logo}
+            className={classes.image}
+             height="50"
+              alt="Logo" />
           </IconButton>
+          </Link>
+
           <div className={classes.grow} />
           <Typography variant="h6" color="textPrimary" component="p">
             Bienvenido
@@ -48,13 +56,15 @@ export default function NavbarComponent() {
             <Button variant="outlined">
             <strong>Ingresa</strong>
             </Button>
+
+            <Link to="checkout-page">
             <IconButton aria-label="show cart ites" color="inherit">
               <Badge badgeContent={0} color="secondary" showZero>
                 <ShoppingCart fontSize='large' color='primary' max={20}/> 
               </Badge>
                       
             </IconButton>
-           
+            </Link>
           </div>
         </Toolbar>
       </AppBar>

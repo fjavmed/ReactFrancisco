@@ -1,45 +1,31 @@
-  import logo from './logo.svg';
-  import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-  import Navbar from './components/navegacion/Navbar'
-  import Inicio from './components/pages/Inicio'
-  import Contacto from './components/pages/Contacto'
-  import Redes from './components/pages/Redes'
-  import { ItemCount } from './components/itemCount'
-  import "../node_modules/bootstrap/dist/css/bootstrap.css"
-  import './App.css';
-  import CardComponent from './components/CardComponent'
-  import NavbarComponent from './components/NavbarComponent';
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import './App.css';
+import NavbarComponent from './components/NavbarComponent';
+import Products from './components/Productos';
+import {Switch, BrowserRouter, Route} from "react-router-dom";
+import CheckoutPage from './components/CheckoutPage';
+import Product from "./components/CardComponent";
+
+
+function App() {
   
-   function App() {
-    
-    return (
-      <div className="App" >  
-                
-                           
-    <NavbarComponent /> 
- 
-        <Router>
-          <Navbar/>
-
-          <Switch>
-            <Route path='/' exact component={Inicio}/>
-            <Route path='/contacto' component={Contacto}/>
-            <Route path='/redes' component={Redes}/>
-          </Switch>
-        </Router>
-
-         Agrega Al carro 
-        <ItemCount />
-   <CardComponent/> 
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div>
-              Aquí se está construyendo la APP de Francisco                             
-          </div>
-          
-        </header>
-      </div>
+  return (
+    <BrowserRouter>
+    <div className="App" >  
+        <NavbarComponent />
+      <Switch>
+         <Route path="/checkout-page">
+            <CheckoutPage />
+         </Route>
+         <Route path="/">
+           <Products />
+           {/* <Product /> */}
+         </Route>
+      </Switch>
+         </div>
+   </BrowserRouter>
+   
     );
   }
-
+  
   export default App;

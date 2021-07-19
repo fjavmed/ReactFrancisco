@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,6 +9,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { makeStyles } from '@material-ui/core/styles';
 import { AddShoppingCart } from '@material-ui/icons';
 import accounting from 'accounting';
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Product() {
+export default function Product({product : { id, marca, name, productType, image, price, rating, description}}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -54,20 +54,20 @@ export default function Product() {
           variant='h5'
           color='textSecondary'
         >
-          {accounting.formatMoney(399990, "$", 0, ".", ",")}
+          {accounting.formatMoney(price, "$", 0, ".", ",")}
         </Typography>
       }
-        title="Sony ILCE 6000"
-        subheader="Cámara semiprofesional"
+        title={name}
+        subheader= {marca}
       />
       <CardMedia
         className={classes.media}
-        image="https://www.travel.cl/upload/producto/54135g1.jpg"
-        title="Sony ILCE 6000"
+        image={image}
+        title={name}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          Cámara de lentes intercambiables, liviana, de gran rendimiento ideal para viajes.
+          {productType}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -75,7 +75,7 @@ export default function Product() {
           <AddShoppingCart fontSize='large' />
         </IconButton>
         
-        {Array(4)
+        {Array(rating)
           .fill()
           .map((_, i) => (
             <p>&#11088;</p>
@@ -95,16 +95,7 @@ export default function Product() {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-          Gracias al enfoque ultrarrápido de 0.06 segundos para lograr tomas precisas. Dale un vistazo a sus funciones: conectividad Wi-Fi / NFC, disparo continuo de 11 fotogramas, visor electrónico Tru-Finder™ y más.
-          </Typography>
-          <Typography paragraph>
-          Crea imágenes de sorprendente belleza con el sensor de imagen APS-C de 24,3 megapíxeles efectivos desarrollado recientemente por Sony. Con el mismo tamaño que los que se encuentran en la mayoría de cámaras DSLR, este sofisticado sensor ofrece alta sensibilidad en entornos con escasa iluminación, así como primeros planos y efectos de fondo desenfocado increíblemente atractivos. Disfrutarás de la mayor eficiencia de acumulación de luz para una estructura de lente en chip sin espacios, un ruido extremadamente bajo en una amplia gama de sensibilidades de ISO 100 a 25.600 y una calidad excepcional en toda la imagen con colores realistas, detalles increíbles y gradaciones de tonos suaves, que revelan todos los matices de la escena.
-          </Typography>
-          <Typography paragraph>
-          Captura continua de 11 fps con seguimiento de enfoque automáticoCuando el sujeto se mueve rápido, el disparo continuo de 11 fps con un rendimiento de seguimiento de enfoque automático superior asegura la captura del momento decisivo. Esta función aprovecha al máximo el excelente rendimiento de seguimiento de los 179 puntos de enfoque automático con detección de fases de zona amplia de Sony para seguir al sujeto de forma precisa en cualquier lugar de la pantalla.
-          </Typography>
-          <Typography>
-          Ahora más preciso que nunca gracias a los avances en el enfoque automático con detección de fases, el enfoque automático con bloqueo mejora el seguimiento de sujetos ajustando el tamaño del fotograma objetivo para adaptarse a las características del sujeto y asegurando en todo momento el uso del punto de enfoque automático óptimo.
+          {description}
           </Typography>
         </CardContent>
       </Collapse>
