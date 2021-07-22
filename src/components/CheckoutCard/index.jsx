@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -8,6 +9,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import accounting from 'accounting';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useStateValue } from '../../StateProvider';
+import { actionTypes } from '../../reducer';
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,13 +37,21 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function CheckoutCard({product : { sku, marca, name, productType, image, price, rating, description}}) {
+export default function CheckoutCard({
+  product : { id, marca, name, productType, image, price, rating, description},
+}) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [{basket}, dispatch] = useStateValue();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+const removeItem = ()=> dispatch({
+  type: actionTypes.REMOVE_ITEM,
+  id: id,
+})
 
   return (
     <Card className={classes.root}>
@@ -61,7 +74,7 @@ export default function CheckoutCard({product : { sku, marca, name, productType,
         image={image}
         title={name}
       />
-    
+      
     <CardActions disableSpacing className={classes.cardActions}>
          <div className={classes.cardRating}>
           {Array(rating)
@@ -73,7 +86,7 @@ export default function CheckoutCard({product : { sku, marca, name, productType,
      
 
         <IconButton>
-            <DeleteIcon fontSize='large'/>
+            <DeleteIcon fontSize='large' onClick={removeItem}/>
          </IconButton>            
     </CardActions>
 </Card>
